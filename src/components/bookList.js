@@ -24,8 +24,6 @@ function BookList(props) {
   );
 }
 
-export default BookList;
-
 BookList.propTypes = {
   books: PropTypes.arrayOf(
     PropTypes.shape({
@@ -36,3 +34,5 @@ BookList.propTypes = {
   ).isRequired,
   onDelete: PropTypes.func.isRequired,
 };
+
+export default BookList;

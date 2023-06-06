@@ -11,7 +11,8 @@ function App() {
   const [books, setBooks] = useState([]);
 
   const handleAddBook = (newBook) => {
-    setBooks([...books, newBook]);
+    const bookWithId = { ...newBook, id: Date.now() };
+    setBooks([...books, bookWithId]);
   };
 
   const handleDeleteBook = (bookId) => {

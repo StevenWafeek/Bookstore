@@ -13,6 +13,7 @@ function Book(props) {
       <h3>{title}</h3>
       <p>
         Author:
+        {' '}
         {author}
       </p>
       <button type="button" onClick={handleDelete}>Delete</button>
@@ -20,9 +21,10 @@ function Book(props) {
   );
 }
 
-export default Book;
 Book.propTypes = {
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
+
+export default Book;
