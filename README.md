@@ -26,7 +26,7 @@
 
 # 📖 Bookstore <a name="about-project"></a>
 
-This is **Bookstore** site, created with React make a a calculation of the numbers.
+This is **Bookstore** site, created with React its contain store for books.
 
 ## 🛠 Built With <a name="built-with"></a>
 
