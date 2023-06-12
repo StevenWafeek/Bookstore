@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Book from './books';
+import { removeBook } from '../redux/books/booksSlice';
 
 function BookList(props) {
-  const { books, onDelete } = props;
+  const { books, removeBook } = props;
 
   const handleDelete = (id) => {
-    onDelete(id);
+    removeBook(id);
   };
 
   return (
@@ -14,10 +16,12 @@ function BookList(props) {
       <h2>Book List</h2>
       {books.map((book) => (
         <Book
-          key={book.id}
+          key={book.item_id}
           title={book.title}
           author={book.author}
-          onDelete={() => handleDelete(book.id)}
+          category={book.category}
+          item_id={book.item_id}
+          onDelete={() => handleDelete(book.item_id)}
         />
       ))}
     </div>
@@ -27,12 +31,21 @@ function BookList(props) {
 BookList.propTypes = {
   books: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      item_id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       author: PropTypes.string.isRequired,
+      // category: PropTypes.string.isRequired,
     }),
   ).isRequired,
-  onDelete: PropTypes.func.isRequired,
+  removeBook: PropTypes.func.isRequired,
 };
 
-export default BookList;
+const mapStateToProps = (state) => ({
+  books: state.books.books,
+});
+
+const mapDispatchToProps = {
+  removeBook,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BookList);
