@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Book(props) {
-  const { title, author, onDelete } = props;
+  const {
+    title, author, category, onDelete,
+  } = props;
 
   const handleDelete = () => {
     onDelete();
@@ -16,6 +18,11 @@ function Book(props) {
         {' '}
         {author}
       </p>
+      <p>
+        Category:
+        {' '}
+        {category}
+      </p>
       <button type="button" onClick={handleDelete}>Delete</button>
     </div>
   );
@@ -24,6 +31,7 @@ function Book(props) {
 Book.propTypes = {
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
 
