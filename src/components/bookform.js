@@ -5,7 +5,10 @@ import { addBook } from '../redux/books/booksSlice';
 function BookForm() {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
+  const [category, setCategory] = useState('');
   const dispatch = useDispatch();
+
+  const categoryOptions = ['Fiction', 'Action', 'Nonfiction', 'Comedy'];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,10 +16,12 @@ function BookForm() {
       item_id: `item${Date.now()}`,
       title,
       author,
+      category,
     };
     dispatch(addBook(newBook));
     setTitle('');
     setAuthor('');
+    setCategory('');
   };
 
   return (
@@ -43,6 +48,23 @@ function BookForm() {
               value={author}
               onChange={(e) => setAuthor(e.target.value)}
             />
+          </label>
+        </div>
+        <div>
+          <label htmlFor="category-select">
+            Category:
+            <select
+              id="category-select"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            >
+              <option value="">Select a category</option>
+              {categoryOptions.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
           </label>
         </div>
         <button type="submit">Add Book</button>
