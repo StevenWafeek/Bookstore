@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import Book from './books';
 import { removeBook } from '../redux/books/booksSlice';
 
 function BookList(props) {
-  const { books, removeBook } = props;
+  const { books } = props;
+  const dispatch = useDispatch();
 
   const handleDelete = (id) => {
-    removeBook(id);
+    dispatch(removeBook(id));
   };
 
   return (
@@ -37,15 +38,10 @@ BookList.propTypes = {
       category: PropTypes.string.isRequired,
     }),
   ).isRequired,
-  removeBook: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   books: state.books.books,
 });
 
-const mapDispatchToProps = {
-  removeBook,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(BookList);
+export default connect(mapStateToProps)(BookList);
