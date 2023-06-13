@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Book from './books';
 import { removeBook } from '../redux/books/booksSlice';
 
-function BookList(props) {
-  const { books } = props;
+function BookList() {
   const dispatch = useDispatch();
+  const books = useSelector((state) => state.books.books);
 
   const handleDelete = (id) => {
     dispatch(removeBook(id));
@@ -22,26 +21,11 @@ function BookList(props) {
           author={book.author}
           category={book.category}
           item_id={book.item_id}
-          onDelete={() => handleDelete(book.item_id)}
+          handleDelete={() => handleDelete(book.item_id)}
         />
       ))}
     </div>
   );
 }
 
-BookList.propTypes = {
-  books: PropTypes.arrayOf(
-    PropTypes.shape({
-      item_id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      author: PropTypes.string.isRequired,
-      category: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  books: state.books.books,
-});
-
-export default connect(mapStateToProps)(BookList);
+export default BookList;
