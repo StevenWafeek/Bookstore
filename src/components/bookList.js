@@ -7,13 +7,11 @@ function BookList() {
   const dispatch = useDispatch();
   const books = useSelector((state) => Object.values(state.books).flat());
 
-  // Fetch the books from the API after the component has rendered
   useEffect(() => {
     dispatch(fetchBooks());
   }, [dispatch]);
 
   const handleDelete = (id) => {
-    // console.log('Deleting book with id:', id);
     dispatch(removeBook(id));
   };
 
