@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 function Book(props) {
   const {
-    title, author, category, onDelete,
+    title, author, category, handleDelete,
   } = props;
 
-  const handleDelete = () => {
-    onDelete();
+  const handleClick = () => {
+    handleDelete();
   };
 
   return (
@@ -23,7 +23,7 @@ function Book(props) {
         {' '}
         {category}
       </p>
-      <button type="button" onClick={handleDelete}>Delete</button>
+      <button type="button" onClick={handleClick}>Delete</button>
     </div>
   );
 }
@@ -32,7 +32,7 @@ Book.propTypes = {
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
-  onDelete: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
 };
 
 export default Book;
