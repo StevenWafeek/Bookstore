@@ -18,7 +18,6 @@ function BookForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newBook = {
-      item_id: `item${Date.now()}`,
       title,
       author,
       category,
