@@ -243,9 +243,6 @@ form {
   color: #121212;
   font-size: 0.813rem;
   opacity: 0.5;
-}
-
-.book-last p:nth-child(1) {
   margin-top: 0.438rem;
   font-size: 1rem;
   letter-spacing: -0.4px;
