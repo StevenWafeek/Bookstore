@@ -80,9 +80,21 @@ Install this project with:
 
 ### Usage
 
-To run the project:
+To run the development server:
 
-Open the Project in your code editor and start Live Server inside the index.html file.
+```sh
+npm run dev
+```
+
+`npm start` starts the same development server.
+
+Books are saved in this browser's local storage.
+
+To create a production build:
+
+```sh
+npm run build
+```
 
 ### Run tests
 
@@ -107,6 +119,12 @@ For Javascript linter errors:
 ```sh
  npx eslint .
 
+```
+
+To run tests:
+
+```sh
+npm test
 ```
 
 ### Deployment

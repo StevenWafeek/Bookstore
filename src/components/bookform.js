@@ -6,6 +6,7 @@ function BookForm() {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [category, setCategory] = useState('');
+  const [error, setError] = useState('');
   const dispatch = useDispatch();
 
   const categoryOptions = [
@@ -15,23 +16,30 @@ function BookForm() {
     { id: '4', value: 'Comedy' },
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
     const newBook = {
       title,
       author,
       category,
     };
-    dispatch(addBook(newBook));
-    setTitle('');
-    setAuthor('');
-    setCategory('');
+    const result = await dispatch(addBook(newBook));
+
+    if (addBook.fulfilled.match(result)) {
+      setTitle('');
+      setAuthor('');
+      setCategory('');
+    } else {
+      setError(`Could not add book: ${result.error.message || 'Please try again.'}`);
+    }
   };
 
   return (
     <div className="form-div">
       <hr />
       <h2>ADD NEW BOOK</h2>
+      {error && <p role="alert">{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="title-input">
